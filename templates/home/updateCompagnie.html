@@ -1,0 +1,128 @@
+{% load static %}
+{% include 'header.html' %}
+
+<style>
+    
+
+@media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
+    }
+    
+</style>
+
+<br>  <br>  <br>
+<div>
+    <p class="h2" style="text-align: center; ; color: #9ed034">Modifier les informations de la compagnie </p>
+</div>
+<br>  
+<section class="h-100 h-custom"  style="border-color: #9ed034;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+              class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+              alt="Sample photo">
+            <div class="card-body p-4 p-md-5">
+              <form class="px-md-2"  method="post" action="{% url 'saveCompagnie' compagnie.id%}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">                   
+                    <div>
+                        <label class="form-label" for="form3Example1q">Nom</label>
+                        {{form.nom}}
+                        {% comment %} <input type="text" id="form3Example1q" class="form-control"  value="{{compagnie.nom}}" /> {% endcomment %}
+                    </div>
+                 </div>       
+                 <br>  <br>  
+                <div class="row">
+                    <div>
+                        <label for="image" class="form-label"> logo compagnie</label>
+                        {{form.logo}}
+
+                        {% comment %} <input class="form-control" type="file" name="logo"  value="{{compagnie.logo}}" accept="images/*" id="image" onchange="display_image(this)"> {% endcomment %}
+                    </div>
+                </div>
+                <br>  <br> 
+
+                <button  >
+                    <a  type="submit" class="btn app-btn-secondary  rounded-0 " style="color: #9ed034" >
+                    Modifier
+                    </a>
+                </button>
+  
+              </form>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>  <br>  <br>
+
+  <br>  <br>  <br>
+{% comment %} <script>
+    function display_image(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#cimg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            $('#cimg').attr('src', "{% static 'assets/default/img/no-image-available.png' %}");
+        }
+    }
+    $(function() {
+        $('#airline-form').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            start_loader();
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": '{{csrf_token}}'
+                },
+                url: "{% url 'save-airline' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert("Erreur lors du process", 'erreur');
+                    end_loader();
+                },
+                success: function(resp) {
+                    if (typeof resp == 'object' && resp.status == 'success') {
+                        location.reload()
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.text(resp.msg)
+                    } else {
+                        el.text("Erreur lors du process", 'erreur');
+                        end_loader();
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                    $("html, body, .modal").scrollTop(0);
+                    end_loader()
+                }
+            })
+        })
+    })
+</script> {% endcomment %}
+{% include 'footer.html' %}

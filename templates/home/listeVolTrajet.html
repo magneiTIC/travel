@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+
+
+{% load static %}
+{% load bootstrap5 %}
+<br>    <br><br>     
+
+<p class="h1" style="text-align: center; ; color: #9ed034">{{trajet.depart}} - {{trajet.arrive}} </p>
+<br><br>    
+
+
+<div class="flexslider">
+                <div class="row">   
+                 
+                    <section class="ftco-section bg-light" id="cards">
+                        <div class="container card-styles">
+                            <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card" style="height: 340px;" >
+                                            <div class="icon-wrap px-4 pt-4">
+                                                <div class="icon d-flex justify-content-center align-items-center bg-info rounded-circle">
+                                                    <span class="ion-logo-ionic text-light"></span>
+                                                </div>
+                                            </div>
+                                            {%for vol in trajet.vol_set.all%} 
+
+                                            <div class="card-body pb-5 px-4">
+                                                <p class="h3" style="text-align: center; ; color: #000">Information du vol </p> <br> 
+
+                                                <div class="mb-1 text-muted">
+                                                    <strong class="d-inline-block mb-2 text-dark">Date:</strong>
+                                                    {{vol.date}} 
+                                                </div>
+
+                                                <div class="mb-1 text-muted">
+                                                    <strong class="d-inline-block mb-2 text-dark">Heure:</strong>
+                                                    {{vol.heure}} 
+                                                </div>                   
+                                                <strong class="d-inline-block mb-2 text-dark">Compagnie:</strong>
+
+                                                {% for compagnie in vol.compagnies.all %}       
+                                                {% comment %} <p class="h3" style="text-align: center; ; color: #9ed034">{{compagnie.nom}}  </p> {% endcomment %}
+                                                {{compagnie.nom}} 
+                                                {%endfor%}
+                                            <div>   <br></div>   
+                                                
+                                                <div align='center'>
+                                                    <button  >
+                                                        <a class="btn app-btn-secondary  rounded-0 " style="color: #9ed034" href="{% url 'vol'  vol.id%}">
+                                                        Consulter
+                                                        </a>
+                                                    </button>
+                                                </div>   
+
+                                            </div>   
+                                            {%endfor%}
+
+                                        </div>
+                                 </div>
+
+                            </div>
+                        </div>
+                    </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   <br>    <br><br>     
+
+  
+
+{% include 'footer.html' %}

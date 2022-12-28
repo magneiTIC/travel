@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+
+
+
+
+
+{% load static %}
+
+<br> <br> <br><br> <br> <br>
+
+
+<div class='row'> 
+    <div class='col-sm-6 mb-3 mb-sm-0 float-left'> 
+        <img style='  margin-left: 6em;  ' src="{% static 'images/voyage1.png' %}" alt="Special 1"  height="400px"
+        width="500px">
+    </div>
+    <div class='col-sm-6'> 
+        <br><br><br>
+        <div class="container card-styles">
+            <div class="row">
+                    <div class="col-md-4" >
+                        <div class="card"  >
+                            <div class="icon-wrap px-4 pt-4">
+                                <div class="icon d-flex justify-content-center align-items-center bg-info rounded-circle">
+                                    <span class="ion-logo-ionic text-light"></span>
+                                </div>
+                            </div>
+                            <div class="card-body pb-5 px-4">
+                                <p class="h3" style="text-align: center; ; color: #000">Information du vol </p> <br> 
+
+                                <div class="mb-1 text-muted">
+                                    <strong class="d-inline-block mb-2 text-dark">Date:</strong>
+                                    {{vol.date}} 
+                                </div>
+
+                                <div class="mb-1 text-muted">
+                                    <strong class="d-inline-block mb-2 text-dark">Heure:</strong>
+                                    {{vol.heure}} 
+                                </div>    
+                                <a href="{% url 'listeVol'  vol.trajet.id%}">
+                                     <p class="h3" style="text-align: center; ; color: #9ed034">{{vol.trajet.arrive}} - {{vol.trajet.depart}} </p>
+                                </a>                                       
+                            </div>   
+                        </div>
+                 </div>
+
+            </div>
+        </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+<br> <br> <br>
+
+
+
+    
+            
+
+{% include 'footer.html' %}

@@ -1,0 +1,104 @@
+
+{% include 'header.html' %}
+
+
+{% load static %}
+
+
+
+    <br> <br> 
+    <p class="h1" style="text-align: center; ; color: #9ed034; font-family:fantasy">Bienvenue sur notre site de reservation  </p>
+
+    <br> <br> 
+
+
+<!-- /.flexslider -->
+<div class="flexslider">
+            <ul class="slides">
+                {% for trajet in trajets %}
+                <li>
+                    <div class="overlay"></div>
+                    <img  src="{% static 'images/event_2.jpg' %}" alt="Special 1">
+                    {% comment %} <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 col-lg-4">
+                                <div class="flex-caption visible-lg">
+                                    <span class="price"> {{ vol.prix }}</span>
+                                    <h3 class="title">{{ vol.trajet.depart }}, {{ vol.trajet.arrive }}</h3>
+                                    <p>Voyagez en toute sécrité avec TRAVEL THE BEST AGENCY </p>
+                                    <p>TRAVEL THE BEST AGENCY </p>
+                                    <a href="#" class="slider-btn">Consulter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 col-lg-4">
+                                <div class="flex-caption visible-lg">
+                                    {% comment %} <span class="price"> {{ vol.prix }}</span> {% endcomment %}
+                                    <h3 class="title">{{ trajet.depart }} - {{ trajet.arrive }}</h3>
+                                    <p>Trouvez un billet d'avion pas cher pour votre prochain voyage</p>
+                                    <a href="{% url 'listeVol' trajet.id %}" class="slider-btn">Consulter</a>
+                                    {% comment %} <a   href="{% url 'compagnie' compagnie.id %}" class="price-btn">Visiter notre page</a> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+          
+                {% endfor %}
+
+            </ul>
+        </div>
+<br>
+<!-- /.flexslider -->
+
+
+<!-- /.container -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="our-listing owl-carousel">
+
+            {%for compagnie in compagnies %}
+            <div class="list-item">
+                <div class="list-thumb">
+                    <div class="title">
+                        <h4> {{compagnie.nom}} </h4>
+                    </div>
+                    <br>
+                    <img  style="height: 200px;" src= '../{{compagnie.logo}}' alt="Special 1">
+                </div> <!-- /.list-thumb -->
+                <div class="list-content">
+                    <br>
+                    {% comment %} <h5>Paris, Marseille, Lyon</h5>
+                    <span>SILVER HOTEL, 4 NIGHTS, 5 STARS</span> {% endcomment %}
+                    <a   href="{% url 'compagnie' compagnie.id %}" class="price-btn">Visiter notre page</a>
+               </div>
+            </div>
+            {%endfor%} 
+            
+   
+
+        </div> <!-- /.list-content -->
+    </div> <!-- /.list-item -->
+</div>
+
+
+<br> <br> <br>
+<br> <br> <br>
+
+
+{% include 'footer.html' %}
+
+
+
+    
+
+ 
+     
+ 
+ 
+  

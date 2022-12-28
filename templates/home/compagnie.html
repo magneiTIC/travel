@@ -1,0 +1,99 @@
+{% include 'header.html' %}
+
+
+{% load static %}
+{% load bootstrap5 %}
+<br>    <br><br>     
+
+<p class="h1" style="text-align: center; ; color: #9ed034">{{compagnie.nom}} </p>
+
+
+
+{% comment %} <div class="flexslider ">
+    <img  src= '../{{compagnie.logo}}' alt="Special 1" style=" display: flex;justify-content: center;">
+
+</div>  
+
+<div class="container">
+    <div class="row">
+        <div class="our-listing owl-carousel">
+            {%for vol in compagnie.vol_set.all%} 
+            <div class="list-item">
+                <div class="container card-styles">
+                    <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+
+                                   
+                                <div class="card-body pb-5 px-4">
+                                    <h3 class="mb-0">Information du vol </h3>
+
+                                    <strong class="d-inline-block mb-2 text-success">{{vol.date}}</strong>
+                                    <h3 class="mb-0">{{vol.heure}} </h3>
+                                    <div class="mb-1 text-muted">
+                                        {{vol.trajet.arrive}} - {{vol.trajet.depart}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                         </div>
+                         
+                    </div>
+                </div>
+            </div>
+            {%endfor%}   
+        </div> <!-- /.list-content -->
+    </div> <!-- /.list-item -->
+</div> {% endcomment %}
+
+<div class="flexslider">
+                <div class="row">   
+                    <section>
+                        <img  src= '../{{compagnie.logo}}' style=" display: block; margin-left: auto; margin-right: auto" alt="Special 1">
+                        {% comment %} <img src="{% if compagnie.logo %}{{ compagnie.logo}}{% else %}{% static 'assets/default/img/no-image-available.png' %}{% endif %}" alt="{{ compagnie.nom}}" class="img-thumbnail rounded-circle al-logo"> {% endcomment %}
+                        <br> 
+
+                    </section>
+                    <section class="ftco-section bg-light" id="cards">
+                        <div class="container card-styles">
+                            <div class="row">
+                                {%for vol in compagnie.vol_set.all%} 
+                                    <div class="col-md-4">
+                                        <div class="card" >
+                                            <div class="icon-wrap px-4 pt-4">
+                                                <div class="icon d-flex justify-content-center align-items-center bg-info rounded-circle">
+                                                    <span class="ion-logo-ionic text-light"></span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body pb-5 px-4">
+                                                <p class="h3" style="text-align: center; ; color: #000">Information du vol </p> <br> 
+
+                                                <div class="mb-1 text-muted">
+                                                    <strong class="d-inline-block mb-2 text-dark">Date:</strong>
+                                                    {{vol.date}} 
+                                                </div>
+
+                                                <div class="mb-1 text-muted">
+                                                    <strong class="d-inline-block mb-2 text-dark">Heure:</strong>
+                                                    {{vol.heure}} 
+                                                </div>                                           
+                                                <p class="h3" style="text-align: center; ; color: #9ed034">{{vol.trajet.arrive}} - {{vol.trajet.depart}} </p>
+                                            </div>   
+                                        </div>
+                                 </div>
+                                {%endfor%}
+
+                            </div>
+                        </div>
+                    </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   <br>    <br><br>     
+
+
+
+{% include 'footer.html' %}
